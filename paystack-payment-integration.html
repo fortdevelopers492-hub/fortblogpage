@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="fort-logo-no-background.png" type="image/png">
+    <title>Comprehensive Paystack Payment Integration Guide - Fort Developers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0a192f;
+            --primary-light: #1e293b;
+            --accent: #0288d1;
+            --accent-glow: #38bdf8;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --radius: 12px;
+            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+            --fort-blue-light: #3182ce;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            line-height: 1.75;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--white);
+            color: var(--accent);
+            padding: 10px 22px;
+            text-decoration: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background-color: var(--accent);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(2, 136, 209, 0.2);
+        }
+
+        .page-card {
+            background: var(--white);
+            padding: 50px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            box-shadow: var(--shadow);
+        }
+
+        header.hero {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 2.3rem;
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1.05rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        .article-meta {
+            margin-top: 15px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin: 35px 0 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 {
+            color: var(--primary);
+            font-size: 1.25rem;
+            margin: 25px 0 10px;
+        }
+
+        p {
+            margin-bottom: 18px;
+            color: var(--text-main);
+            font-size: 1.02rem;
+        }
+
+        .img-slot {
+            background: #f1f5f9;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img-slot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .img-center {
+            width: 100%;
+            max-height: 380px;
+            margin: 30px 0;
+        }
+
+        ul, ol {
+            padding-left: 24px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            color: var(--text-main);
+            font-size: 1rem;
+        }
+
+        pre {
+            background-color: var(--primary);
+            color: var(--accent-glow);
+            padding: 20px;
+            border-radius: var(--radius);
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.88rem;
+            line-height: 1.4;
+            margin: 25px 0;
+            border: 1px solid var(--primary-light);
+        }
+
+        .footer-a-link {
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .footer-a-link:hover {
+            text-decoration: underline;
+        }
+
+        .link-callout {
+            background-color: #f0f9ff;
+            border-left: 4px solid var(--accent);
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.98rem;
+        }
+
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--fort-blue-light) rgba(0, 0, 0, 0.05);
+        }
+
+        ::-webkit-scrollbar {
+            width: 7px !important;
+            height: 7px !important;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05) !important;
+            border-radius: 10px !important;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--fort-blue-light) !important;
+            border-radius: 10px !important;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0288d1 !important;
+        }
+
+        .related-section { margin-top: 50px; padding-top: 30px; border-top: 2px solid #e2e8f0; }
+        .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+        .blog-card { background: var(--white); border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.03); }
+        .blog-card-media { height: 160px; background: #e2e8f0; overflow: hidden; }
+        .blog-card-media img { width: 100%; height: 100%; object-fit: cover; }
+        .blog-card-body { padding: 20px; }
+        .blog-topic-badge { display: inline-block; background: #e0f2fe; color: var(--accent); padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
+        .blog-card-title { font-size: 1.1rem; color: var(--primary); margin-bottom: 10px; line-height: 1.3; }
+        .blog-card-summary { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 15px; }
+
+        @media (max-width: 768px) {
+            .page-card { padding: 25px; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="https://blogs.fortdevelopers.com.ng" class="back-btn"><i class="fa-solid fa-arrow-left"></i>Back to Blogs & Documentary</a>
+        
+        <div class="page-card">
+            <header class="hero">
+                <h1>Comprehensive Paystack Payment Integration Guide</h1>
+                <div class="subtitle">Unified Architecture for Standard, Split, and Subscription Payments</div>
+                <div class="article-meta">
+                    <span><i class="fa-solid fa-user"></i> By Fort Engineering Team</span> | 
+                    <span><i class="fa-solid fa-calendar-days"></i> August 15, 2026</span> | 
+                    <span><i class="fa-solid fa-clock"></i> 18 Min Read</span>
+                </div>
+            </header>
+
+            <div class="img-slot img-center">
+                <img src="assets/paystack-fortdevelopers-image.png" alt="General Paystack Payment Integration">
+            </div>
+
+            <p>Paystack has firmly established itself as the leading digital payment infrastructure across African tech ecosystems. By standardizing underlying channels—including local and international debit or credit cards, direct bank transfers, USSD, Apple Pay, and mobile money wallets—Paystack lowers the barrier to accepting payments online. However, moving from simple test transactions to production-ready enterprise applications requires developers to understand the full scope of transaction lifecycles, webhook verification, edge-case recovery, state management, and split-billing models.</p>
+
+            <p>Building a resilient financial system is not merely about showing a checkout popup. It requires designing an architecture that handles network timeouts, double-click submissions, race conditions, partial payments, automated reconciliation, and security threats. In this master technical guide, we break down the foundational blueprints for single-charge checkouts, secure HMAC-based webhook listeners, multi-vendor marketplace split configurations, escrow mechanisms, and automated subscription engines using Node.js, Express, and modern REST practices.</p>
+
+            <h2>1. Core Architecture and Transaction Lifecycle Overview</h2>
+            <p>Before writing integration code, software engineers must understand the standard interaction pattern between four primary entities: the Client Browser/App, Your Application Backend, the Paystack API, and the Customer's Financial Institution. Relying exclusively on client-side callbacks (such as JavaScript modal popups) is a critical security risk. Frontend environments can be tampered with, network connections can drop before callbacks fire, or users might accidentally close their browsers immediately after completing a bank authorization.</p>
+
+            <p>A secure checkout flow requires a server-driven sequence:</p>
+            <ol>
+                <li><strong>Initialization:</strong> The client sends an order request to your backend. Your backend calculates the order sum securely, generates a unique transaction reference, and requests an authorization URL from Paystack.</li>
+                <li><strong>Redirection/Modal Launch:</strong> The client opens the authorized checkout interface using the returned Paystack access code or authorization URL.</li>
+                <li><strong>Customer Payment Processing:</strong> Paystack routes the user through two-factor authentication (3D Secure OTP, PIN, or USSD code) with their bank.</li>
+                <li><strong>Asynchronous Verification:</strong> Once the bank approves the transaction, Paystack dispatches an asynchronous, cryptographically signed HTTP POST request (a Webhook) directly to your server.</li>
+                <li><strong>Full Fulfillment:</strong> Your backend verifies the payload, checks that the amount paid matches the stored order total, updates your database within an atomic transaction, and provisions the purchased product or service.</li>
+            </ol>
+
+            <h2>2. Standard Payment Checkout Implementation</h2>
+            <p>To implement standard checkout securely, we keep money values in the smallest currency unit. In Nigeria (NGN), Ghana (GHS), and South Africa (ZAR), Paystack expects values in kobo, pesewas, and cents respectively (e.g., ₦5,000.00 must be formatted as <code>500000</code>). Multiplying your base unit by 100 prevents floating-point rounding errors during currency conversions.</p>
+
+            <p>The implementation below showcases a production-ready server handler for initializing a standard payment using Axios and Node.js:</p>
+
+<pre>
+const axios = require('axios');
+const crypto = require('crypto');
+
+/**
+ * Initializes a standard transaction with Paystack API
+ * @param {string} userEmail - Customer email address
+ * @param {number} amountInNGN - Amount in standard currency unit (e.g., 5000 for NGN 5,000)
+ * @param {string} orderId - Internal unique order identifier
+ * @returns {Promise&lt;string&gt;} - Resolves to the checkout authorization URL
+ */
+async function initializeStandardPayment(userEmail, amountInNGN, orderId) {
+    try {
+        // Convert base currency to kobo (smallest subunit)
+        const amountInKobo = Math.round(amountInNGN * 100);
+        
+        // Unique reference to track transaction state and prevent duplicate processing
+        const transactionRef = `FORT_TRX_${orderId}_${Date.now()}`;
+
+        const payload = {
+            email: userEmail,
+            amount: amountInKobo,
+            reference: transactionRef,
+            callback_url: "https://yourdomain.com/api/v1/payments/verify-callback",
+            metadata: {
+                order_id: orderId,
+                custom_fields: [
+                    {
+                        display_name: "Order Reference",
+                        variable_name: "order_reference",
+                        value: orderId
+                    }
+                ]
+            }
+        };
+
+        const response = await axios.post(
+            'https://api.paystack.co/transaction/initialize',
+            payload,
+            {
+                headers: {
+                    Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
+                    'Content-Type': 'application/json'
+                },
+                timeout: 10000 // 10 second timeout for network resilience
+            }
+        );
+
+        if (response.data && response.data.status) {
+            // Persist the transactionRef alongside orderId in your database as 'PENDING'
+            // await savePendingOrder(orderId, transactionRef, amountInNGN);
+            
+            return response.data.data.authorization_url;
+        } else {
+            throw new Error(response.data.message || 'Payment initialization failed.');
+        }
+    } catch (error) {
+        console.error('Paystack Initialization Error:', error.response ? error.response.data : error.message);
+        throw new Error('Could not process payment request at this time.');
+    }
+}
+</pre>
+
+            <p>By attaching explicit metadata fields such as the internal <code>order_id</code>, your system can map incoming transactions back to your database even if the original user session is lost or disconnected.</p>
+
+            <h2>3. Secure Webhook Verification & Idempotency Pipeline</h2>
+            <p>Relying on the browser callback URL (e.g., <code>/verify-callback?reference=...</code>) to grant access to purchased items is unsafe. Attackers can manually visit the callback URL with guessed references to trick your platform. Webhooks provide an asynchronous, server-to-server confirmation mechanism that is completely decoupled from the browser state.</p>
+
+            <h3>HMAC SHA512 Cryptographic Signature Check</h3>
+            <p>Paystack signs every webhook request payload by sending an <code>x-paystack-signature</code> header containing an HMAC SHA512 hash generated with your Secret API Key. Before parsing the payload, your endpoint must generate an identical hash from the raw request body and verify that both signatures match perfectly.</p>
+
+            <h3>Idempotent Delivery Handling</h3>
+            <p>Webhooks can occasionally be delivered multiple times due to temporary network retries. To avoid double-crediting a account or double-shipping an order, your system must handle webhook events idempotently. Track processed transaction references in your database and reject duplicates immediately.</p>
+
+            <p>Here is an enterprise Express.js route handler demonstrating raw-body cryptographic validation and event idempotency:</p>
+
+<pre>
+const express = require('express');
+const crypto = require('crypto');
+const app = express();
+
+// Use raw middleware to preserve exact body bytes for signature calculation
+app.post('/api/v1/paystack/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
+    try {
+        const hash = crypto
+            .createHmac('sha512', process.env.PAYSTACK_SECRET_KEY)
+            .update(req.body)
+            .digest('hex');
+
+        const paystackSignature = req.headers['x-paystack-signature'];
+
+        // Secure signature comparison using timingSafeEqual to prevent timing attacks
+        if (!paystackSignature || !crypto.timingSafeEqual(Buffer.from(hash), Buffer.from(paystackSignature))) {
+            console.warn('Unauthorized webhook attempt detected. Invalid signature.');
+            return res.status(401).send('Invalid signature');
+        }
+
+        // Parse verified payload JSON
+        const event = JSON.parse(req.body.toString());
+
+        // Process successful transaction event
+        if (event.event === 'charge.success') {
+            const data = event.data;
+            const reference = data.reference;
+            const paidAmountInKobo = data.amount;
+            const orderId = data.metadata ? data.metadata.order_id : null;
+
+            // 1. Check if reference was already processed in database (Idempotency)
+            const isAlreadyProcessed = await checkTransactionAlreadyProcessed(reference);
+            if (isAlreadyProcessed) {
+                // Acknowledge receipt immediately without re-processing business logic
+                return res.status(200).json({ status: 'success', message: 'Event already handled' });
+            }
+
+            // 2. Verify paid amount matches expected database order amount
+            const expectedOrder = await getOrderById(orderId);
+            if (!expectedOrder || (expectedOrder.totalAmount * 100) !== paidAmountInKobo) {
+                console.error(`Amount mismatch error for Ref: ${reference}. Expected ${expectedOrder.totalAmount * 100}, got ${paidAmountInKobo}`);
+                await logFraudAlert(reference, orderId);
+                return res.status(400).send('Transaction verification failure: Amount mismatch');
+            }
+
+            // 3. Update order state atomically in your primary database
+            await markOrderAsPaidAtomically({
+                orderId: orderId,
+                transactionReference: reference,
+                paystackChannel: data.channel,
+                paidAt: data.paid_at
+            });
+
+            console.log(`Successfully fulfilled order #${orderId} for reference ${reference}`);
+        }
+
+        // Always respond with 200 OK to acknowledge event receipt
+        return res.status(200).send('Webhook Processed');
+
+    } catch (error) {
+        console.error('Webhook execution failure:', error);
+        return res.status(500).send('Internal Server Error');
+    }
+});
+</pre>
+
+            <h2>4. Multi-Vendor Split Payments & Escrow Systems</h2>
+            <p>Modern marketplaces, multi-vendor platforms, and gig-economy platforms often collect payments from a single customer and distribute funds dynamically to third-party vendors, reserving a service commission for the platform operator.</p>
+
+            <p>Paystack solves this through the Split Payments API. By setting up <strong>Subaccounts</strong> for individual vendors using their verified bank details, platforms can configure automated percentage-based or fixed-fee splits at checkout time.</p>
+
+            <div class="link-callout">
+                For complete architecture patterns, see our dedicated documentary on <a class="footer-a-link" href="paystack-escrow-integration.html">paystack split payments and escrow integration</a>.
+            </div>
+
+            <h3>Dynamic Multi-Split Configuration Example</h3>
+            <p>When an order contains products from multiple distinct vendors, platforms can supply a dynamic multi-split payload at initialization. Paystack will disburse payouts to each merchant subaccount automatically while routing platform commission directly to the primary account.</p>
+
+<pre>
+async function initializeMarketplaceMultiSplit(userEmail, items, totalAmountNGN) {
+    // Dynamic array containing vendor subaccount allocations
+    const subaccountSplits = items.map(item => ({
+        subaccount: item.vendorSubaccountCode, // e.g. "ACCT_8874xks9dkl2"
+        share: Math.round(item.vendorPayoutAmountNGN * 100) // Amount in kobo for vendor
+    }));
+
+    const payload = {
+        email: userEmail,
+        amount: Math.round(totalAmountNGN * 100),
+        split: {
+            type: "flat",
+            bearer_type: "account", // Platform absorbs processing fee charges
+            subaccounts: subaccountSplits
+        }
+    };
+
+    const response = await axios.post('https://api.paystack.co/transaction/initialize', payload, {
+        headers: { Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}` }
+    });
+
+    return response.data.data.authorization_url;
+}
+</pre>
+
+            <h3>Custom State-Machine Escrow Architecture</h3>
+            <p>When goods or high-value physical services require customer sign-off before vendor payout, platforms should implement a deferred release escrow system. Rather than splitting funds immediately at checkout, transactions are processed into a platform-controlled escrow holding bucket. The application engine manages an internal state machine (e.g., <code>PAYMENT_RECEIVED</code> &rarr; <code>IN_ESCROW</code> &rarr; <code>DELIVERY_VERIFIED</code> &rarr; <code>DISBURSED</code>). Once delivery is confirmed, the platform initiates an automated programmatic transfer via the Paystack Transfers API directly to the vendor's account.</p>
+
+            <h2>5. Recurring Subscriptions & Plan Automation Architecture</h2>
+            <p>Software-as-a-Service (SaaS) applications, media portals, and membership organizations rely on predictable subscription billing cycles. Paystack simplifies recurring monetization through the Plans API and reusable Authorization Tokens.</p>
+
+            <div class="link-callout">
+                For in-depth architectural details, read our complete documentary on <a class="footer-a-link" href="paystack-subscription-payments-integration.html">paystack subscription payments and recurring billing architecture</a>.
+            </div>
+
+            <h3>Core Subscription Components</h3>
+            <ul>
+                <li><strong>Payment Plans:</strong> Pre-configured billing templates defined via the Paystack dashboard or API. They stipulate the charge amount, currency, name, and interval (e.g., hourly, daily, weekly, monthly, annually).</li>
+                <li><strong>Authorization Tokens:</strong> Upon completing an initial successful payment, Paystack returns a unique reusable authorization object (containing <code>authorization_code</code>, card brand, last 4 digits, and expiration date). This token allows your platform to initiate subsequent charges on demand without re-prompting the customer for CVV or OTP details.</li>
+                <li><strong>Automated Dunning Management:</strong> Paystack automatically manages retries for failed recurring charges on active plans, sending customizable card-update notification emails directly to end users.</li>
+            </ul>
+
+            <p>Below is a server method illustrating how to attach a customer to a recurring plan during payment initialization:</p>
+
+<pre>
+async function initializeSubscriptionCheckout(userEmail, planCode, customRef) {
+    try {
+        const payload = {
+            email: userEmail,
+            plan: planCode, // e.g. "PLN_gx2ef3723kp"
+            reference: customRef,
+            callback_url: "https://yourdomain.com/dashboard/subscription-confirmed"
+        };
+
+        const response = await axios.post(
+            'https://api.paystack.co/transaction/initialize',
+            payload,
+            {
+                headers: {
+                    Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
+
+        return response.data.data;
+    } catch (error) {
+        console.error('Subscription Setup Failed:', error.response ? error.response.data : error);
+        throw new Error('Subscription service unavailable');
+    }
+}
+</pre>
+
+            <p>When processing subscription renewals, your system listens for specific incoming webhook events sent by Paystack:</p>
+            <ul>
+                <li><code>subscription.create</code>: Triggered immediately when a new plan subscription is activated.</li>
+                <li><code>invoice.create</code> / <code>invoice.payment_failed</code>: Triggered when a renewal charge is attempted or fails due to insufficient funds.</li>
+                <li><code>subscription.disable</code>: Fired when a customer or administrator cancels a subscription plan.</li>
+            </ul>
+
+            <h2>6. Production Security, Webhook Reliability, and Reconciliation Checklist</h2>
+            <p>Deploying payment systems safely into production requires strict security standards and failure-recovery protocols. Review this checklist before launching your application live:</p>
+
+            <h3>Essential Production Requirements</h3>
+            <ol>
+                <li><strong>Strict Key Management:</strong> Never expose public or secret keys inside front-end JavaScript bundles, mobile app binaries, or public GitHub repositories. Use secure environment variable vaults (e.g., AWS Secrets Manager, HashiCorp Vault, or <code>.env</code> files excluded via <code>.gitignore</code>). Separate live and test key sets completely.</li>
+                <li><strong>Enforce HTTPS and SSL Encryption:</strong> All client-to-server interactions and webhook endpoints must operate over TLS 1.2+ HTTPS channels with valid SSL certificates. Unencrypted HTTP webhook routes are vulnerable to man-in-the-middle attacks.</li>
+                <li><strong>Cron Reconciliation Jobs:</strong> Network partitions or infrastructure downtime can occasionally cause missed webhook updates. Build a nightly reconciliation script that queries the Paystack API (<code>GET /transaction/verify/:reference</code>) for any pending transactions in your database that have been stuck for more than 30 minutes.</li>
+                <li><strong>Database Transactions for Accounting:</strong> Wrap order updates, credit balance top-ups, and inventory adjustments inside atomic database transactions (e.g., Postgres <code>BEGIN ... COMMIT</code> or MongoDB session transactions) to prevent partial writes during database drops.</li>
+                <li><strong>Log Auditing without Sensitive Data:</strong> Log raw request metadata, reference strings, and status codes for auditing purposes. Never log raw customer card details, PAN numbers, PINs, or CVVs—doing so violates PCI-DSS compliance standards.</li>
+            </ol>
+
+            <div class="related-section">
+                <h2>Explore Focused Technical Guides</h2>
+                <div class="related-grid">
+                    <article class="blog-card">
+                        <div class="blog-card-media"><img src="assets/paystack-fortdevelopers-image.png" alt="Split Payments"></div>
+                        <div class="blog-card-body">
+                            <div class="blog-topic-badge">Marketplace</div>
+                            <h3 class="blog-card-title">Split Payments & Escrow Integration</h3>
+                            <p class="blog-card-summary">Deep dive into subaccounts, multi-split rules, and state machine escrow holds.</p>
+                            <a class="footer-a-link" href="paystack-escrow-integration.html">Read Documentation →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-card-media"><img src="assets/paystack-fortdevelopers-image.png" alt="Subscription Payments"></div>
+                        <div class="blog-card-body">
+                            <div class="blog-topic-badge">SaaS</div>
+                            <h3 class="blog-card-title">Subscription & Recurring Billing Architecture</h3>
+                            <p class="blog-card-summary">Learn how to create plans, store re-usable authorization tokens, and handle dunning.</p>
+                            <a class="footer-a-link" href="paystack-subscription-payments-integration.html">Read Documentation →</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="fort-logo-no-background.png" type="image/png">
+    <title>Blogs & Documentary - Fort Developers</title>
+    <link rel="stylesheet" href="fort-blogs-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- Preserved Preloader Loading Animation Overlay -->
+    <div id="preloader-container">
+        <img src="fort-logo.png" alt="Fort Logo" class="preloader-logo">
+        <div class="progress-meter-container">
+            <div id="preloader-progress-bar" class="progress-meter-bar"></div>
+        </div>
+        <div id="preloader-percentage-text" class="preloader-text">Loading 0%</div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo-container">
+                <a href="index.html#hero" class="brand-logo-link">
+                    <img src="fort-logo-no-background.png" alt="Fort Developers Logo" class="logo">
+                    <span class="brand-name">Fort Developers</span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#blog-feed-section">Articles</a></li>
+                <li><a href="contact-us.html">Contact</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Intro Section -->
+        <section id="intro-section" class="scroll-section hero">
+            <div class="hero-content">
+                <img src="fort-logo-border-cropped.png" alt="Fort Logo" class="hero-logo">
+                <h1>Fort Developers Blog</h1>
+                <p>Insights, development updates, tutorials, and engineering articles written directly by the Fort Developers team.</p>
+                <a href="#blog-feed-section" class="btn">Explore Articles</a>
+            </div>
+        </section>
+
+        <!-- Table of Contents Section -->
+        <section id="table-of-contents" class="scroll-section bg-light">
+            <div class="container">
+                <h2>Table of Contents</h2>
+                <ul class="drawer-links margin-top-md">
+                    <li><a href="#intro-section"><i class="fa-solid fa-house"></i> Intro / Hero Section</a></li>
+                    <li><a href="#table-of-contents"><i class="fa-solid fa-list"></i> Table of Contents</a></li>
+                    <li><a href="#blog-feed-section"><i class="fa-solid fa-newspaper"></i> Latest Articles & Insights</a></li>
+                    <li><a href="#more-from-fort"><i class="fa-solid fa-cubes"></i> More from Fort Ecosystem</a></li>
+                    <li><a href="#customer-care"><i class="fa-solid fa-headset"></i> Contact Portals & Support</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Blog Feed Section -->
+        <section id="blog-feed-section" class="scroll-section">
+            <div class="container">
+                <h2>Latest Articles & Insights</h2>
+                <p>Read stories, guides, and engineering logs written directly by Fort Developers.</p>
+
+                <div class="search-container-wrapper">
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="article-search" placeholder="Search articles...">
+                    </div>
+                </div>
+
+                <div class="blog-grid margin-top-md">
+
+                    <div id="no-results-message" style="display: none; text-align: center; width: 100%; padding: 40px var(--space-sm); color: #718096">
+                        <i class="fa-solid fa-magnifying-glass" style="font-size: 2rem; margin-bottom: 10px; display: block; color: #a0aec0;"></i>
+                        <p>No articles match your search criteria. Try a different keyword!</p>
+                    </div>
+                    
+                    <article class="card blog-card">
+                        <div class="blog-card-media">
+                            <img src="fort-graphics-logo.png" alt="Fort Graphics Marketplace Workflows">
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-topic-badge">Graphic Design & Tech</div>
+                            <h3 class="blog-card-title">Streamlining Designer-Client Workflows with Fort Graphics</h3>
+                            <p class="blog-card-summary">
+                                How digital asset locks, split payments, and structured design revision pipelines empower modern graphic design clients and creators.
+                            </p>
+                            <a href="fort-graphics-workflows.html" class="btn btn-sm">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="card blog-card">
+                        <div class="blog-card-media">
+                            <img src="assets/html-2d-canvas-image.png" alt="High-Performance 2D Canvas & WebGL Pipelines">
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-topic-badge">Engineering Guide</div>
+                            <h3 class="blog-card-title">High-Performance 2D Canvas & WebGL Rendering Pipelines</h3>
+                            <p class="blog-card-summary">
+                                Learn how hardware-accelerated offscreen canvas rendering and memory optimizations sustain fluid 60 FPS graphics in web browsers.
+                            </p>
+                            <a href="canvas-webgl-rendering-pipelines.html" class="btn btn-sm">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="card blog-card">
+                        <div class="blog-card-media">
+                            <img src="assets/cloud-storage-image.png" alt="Real-Time State Synchronization">
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-topic-badge">Architecture</div>
+                            <h3 class="blog-card-title">Real-Time State Synchronization & Cloud Caching Architecture</h3>
+                            <p class="blog-card-summary">
+                                A deep-dive into optimistic UI mutations, conflict resolution, and cloud database synchronization for high-speed single-page apps.
+                            </p>
+                            <a href="real-time-state-management.html" class="btn btn-sm">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="card blog-card">
+                        <div class="blog-card-media">
+                            <img src="assets/paystack-fortdevelopers-image.png" alt="Paystack Split Payments & Escrow Architecture">
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-topic-badge">Financial Engineering</div>
+                            <h3 class="blog-card-title">Paystack Split Payments & Escrow Integration Architecture</h3>
+                            <p class="blog-card-summary">
+                                A comprehensive guide on integrating automated split-payments, webhook signatures, and escrow holds for digital marketplaces.
+                            </p>
+                            <a href="paystack-escrow-integration.html" class="btn btn-sm">Read Full Guide <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="card blog-card">
+                        <div class="blog-card-media">
+                            <img src="assets/ecommerce-blog-image.png" alt="Web Development Glossary">
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-topic-badge">Resource Center</div>
+                            <h3 class="blog-card-title">Web Development & E-Commerce Technical Glossary</h3>
+                            <p class="blog-card-summary">
+                                A standardized reference defining modern web graphics, database architectures, and financial escrow concepts.
+                            </p>
+                            <a href="technical-glossary.html" class="btn btn-sm">Browse Glossary <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="card blog-card">
+                        <div class="blog-card-media">
+                            <img src="assets/paystack-fortdevelopers-image.png" alt="Comprehensive Paystack Payment Architecture">
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-topic-badge">Overview</div>
+                            <h3 class="blog-card-title">Comprehensive Paystack Payment Architecture</h3>
+                            <p class="blog-card-summary">
+                                Master the unified integration guide covering standard checkouts, split payouts, and recurring billing.
+                            </p>
+                            <a href="paystack-payment-integration.html" class="btn btn-sm">Read Full Guide <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="card blog-card">
+                        <div class="blog-card-media">
+                            <img src="assets/paystack-fortdevelopers-image.png" alt="Subscription & Recurring Billing Architecture">
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-topic-badge">SaaS</div>
+                            <h3 class="blog-card-title">Subscription & Recurring Billing Architecture</h3>
+                            <p class="blog-card-summary">
+                                Learn how to create plans, store re-usable authorization tokens, and handle dunning.
+                            </p>
+                            <a href="paystack-subscription-payments-integration.html" class="btn btn-sm">Read Full Guide <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="card blog-card">
+                        <div class="blog-card-media">
+                            <img src="asset-lock-system.png" alt="Deep Dive on Escrow Verification Systems">
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-topic-badge">Security</div>
+                            <h3 class="blog-card-title">Deep Dive on Escrow Verification Systems</h3>
+                            <p class="blog-card-summary">
+                                Architecting cryptographic trust, finite state machines, HMAC webhook verification, and automated dispute resolution pipelines for digital marketplaces.
+                            </p>
+                            <a href="escrow-verification-systems.html" class="btn btn-sm">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="card blog-card">
+                        <div class="blog-card-media">
+                            <img src="fort-dev-laptop-image.png" alt="Blitting in Modern Web Engine">
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-topic-badge">Rendering Engine</div>
+                            <h3 class="blog-card-title">Deep Dive: Blitting (Bit-Block Transfer) in Web Engines</h3>
+                            <p class="blog-card-summary">
+                                Architecting hardware-accelerated 2D canvas and WebGL pipelines using offscreen buffers, sprite atlases, and high-speed VRAM memory transfers.
+                            </p>
+                            <a href="blitting-web-rendering-pipelines.html" class="btn btn-sm">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="card blog-card">
+                        <div class="blog-card-media">
+                            <img src="assets/ecommerce-blog-image.png" alt="Deep Dive on Single-Page Applications">
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-topic-badge">Architecture</div>
+                            <h3 class="blog-card-title">Deep Dive on Single-Page Applications</h3>
+                            <p class="blog-card-summary">
+                                Architecting desktop-class performance, client-side routing, unidirectional state pipelines, and robust authentication for modern SPAs.
+                            </p>
+                            <a href="deep-dive-spa-architecture.html" class="btn btn-sm">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="card blog-card">
+                        <div class="blog-card-media">
+                            <img src="assets/emailjs-fortdevelopers-image.png" alt="Comprehensive EmailJS Integration Architecture">
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-topic-badge">Overview</div>
+                            <h3 class="blog-card-title">Comprehensive EmailJS Integration Architecture</h3>
+                            <p class="blog-card-summary">
+                                Master client-side email dispatching, auto-responder workflows, dynamic OTP verification, and reCAPTCHA spam controls.
+                            </p>
+                            <a href="emailjs-integration-guide.html" class="btn btn-sm">Read Full Guide <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="card blog-card">
+                        <div class="blog-card-media">
+                            <img src="assets/emailjs-fortdevelopers-image.png" alt="Auto-Reply EmailJS Integration">
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-topic-badge">Automation</div>
+                            <h3 class="blog-card-title">Auto-Reply EmailJS Integration</h3>
+                            <p class="blog-card-summary">
+                                Build chained dual-template dispatch engines to deliver instant dynamic acknowledgments and support updates.
+                            </p>
+                            <a href="auto-reply-emailjs-integration.html" class="btn btn-sm">Read Full Guide <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="card blog-card">
+                        <div class="blog-card-media">
+                            <img src="assets/emailjs-fortdevelopers-image.png" alt="OTP Verification EmailJS Architecture">
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-topic-badge">Security</div>
+                            <h3 class="blog-card-title">OTP Verification EmailJS Architecture</h3>
+                            <p class="blog-card-summary">
+                                Implement client-side One-Time Password generation, email delivery, expiration timers, and state validation.
+                            </p>
+                            <a href="otp-emailjs-integration.html" class="btn btn-sm">Read Full Guide <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="card blog-card">
+                        <div class="blog-card-media">
+                            <img src="assets/html-2d-canvas-image.png" alt="Optimizing Sprite Atlases for WebGL Canvas Pipelines">
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-topic-badge">Graphics Engineering</div>
+                            <h3 class="blog-card-title">Optimizing Sprite Atlases for WebGL Canvas Pipelines</h3>
+                            <p class="blog-card-summary">
+                                Deep dive into packing algorithms, reducing draw calls, and dynamic texture binding for high-performance complex web graphics.
+                            </p>
+                            <a href="optimizing-sprite-atlases-webgl.html" class="btn btn-sm">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="card blog-card">
+                        <div class="blog-card-media">
+                            <img src="assets/html-2d-canvas-image.png" alt="Web Workers & OffscreenCanvas">
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-topic-badge">Performance Engineering</div>
+                            <h3 class="blog-card-title">Web Workers & OffscreenCanvas: Threading Your Rendering Engine</h3>
+                            <p class="blog-card-summary">
+                                Learn how to move heavy 2D calculations and rendering loops off the main thread to eliminate UI freezing and maintain a smooth 60 FPS.
+                            </p>
+                            <a href="web-workers-offscreencanvas-rendering.html" class="btn btn-sm">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                    
+                    <article class="card blog-card">
+                        <div class="blog-card-media">
+                            <img src="fort-dev-laptop-image.png" alt="Understanding Compositing and Layer Squashing">
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-topic-badge">Browser Performance</div>
+                            <h3 class="blog-card-title">Understanding Compositing and Layer Squashing in Modern Web Browsers</h3>
+                            <p class="blog-card-summary">
+                                A deep-dive breakdown of hardware layers, GPU paint execution pipelines, layer promotion, and strategies for avoiding unintended VRAM memory overhead.
+                            </p>
+                            <a href="compositing-and-layer-squashing.html" class="btn btn-sm">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article> 
+                    
+                    <article class="card blog-card">
+                        <div class="blog-card-media">
+                            <img src="assets/paystack-fortdevelopers-image.png" alt="Architecting Multi-Currency Ledgers for Global Creative Marketplaces">
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-topic-badge">Financial Engineering</div>
+                            <h3 class="blog-card-title">Architecting Multi-Currency Ledgers for Global Creative Marketplaces</h3>
+                            <p class="blog-card-summary">
+                                A deep dive into double-entry database schemas, real-time exchange rate caching, foreign exchange fee routing, and cross-border split payouts.
+                            </p>
+                            <a href="multi-currency-ledger-architecture.html" class="btn btn-sm">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>    
+                    
+                    <article class="card blog-card">
+                        <div class="blog-card-media">
+                            <img src="assets/cloud-storage-image.png" alt="Securing Digital Deliverables">
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-topic-badge">Security & Cloud</div>
+                            <h3 class="blog-card-title">Securing Digital Deliverables: Dynamic URL Expiration & Watermarking</h3>
+                            <p class="blog-card-summary">
+                                Beyond basic asset locks—generating timed AWS S3 pre-signed URLs and on-the-fly image watermarking before payout confirmation.
+                            </p>
+                            <a href="securing-digital-deliverables.html" class="btn btn-sm">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- More From Fort Platforms -->
+        <section id="more-from-fort" class="scroll-section bg-light">
+            <div class="container">
+                <h2>More From Fort</h2>
+                <p>Discover platforms and products built and maintained under the Fort ecosystem.</p>
+
+                <div class="grid margin-top-md">
+                    <div class="card ecosystem-card" onclick="window.open('https://fort-site.com.ng/fort%20mart%20index.html', '_blank')">
+                        <div class="card-img-box">
+                            <img src="fort-mart-logo.png" alt="Fort Mart Logo">
+                        </div>
+                        <h3>Fort Mart</h3>
+                        <p>E-Commerce Marketplace & Live Chat</p>
+                    </div>
+
+                    <div class="card ecosystem-card" onclick="window.open('https://graphics.fort-site.com.ng', '_blank')">
+                        <div class="card-img-box">
+                            <img src="fort-graphics-logo.png" alt="Fort Graphics Logo">
+                        </div>
+                        <h3>Graphics Marketplace</h3>
+                        <p>Hire Designers & Download Assets</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact & Support Section -->
+        <section id="customer-care" class="scroll-section">
+            <div class="container">
+                <h2>Contact Portals & Support</h2>
+                <p>Reach out for support, custom website creation, reviews, or queries across our channels.</p>
+                
+                <div class="grid margin-top-md">
+                    <div class="card support-card">
+                        <div class="card-icon" style="color: #25D366;"><i class="fa-brands fa-whatsapp"></i></div>
+                        <h3>WhatsApp Corporate Node</h3>
+                        <p>+2348028241162</p>
+                        <a href="https://wa.me/2348028241162" target="_blank" class="btn btn-sm">Chat on WhatsApp</a>
+                    </div>
+
+                    <div class="card support-card">
+                        <div class="card-icon" style="color: #EA4335;"><i class="fa-solid fa-envelope"></i></div>
+                        <h3>E-Mail Support</h3>
+                        <p>fortdevelopers492@gmail.com</p>
+                        <a href="mailto:fortdevelopers492@gmail.com" class="btn btn-sm">Send Email</a>
+                    </div>
+
+                    <div class="card support-card">
+                        <div class="card-icon" style="color: #1877F2;"><i class="fa-brands fa-facebook"></i></div>
+                        <h3>Facebook Community</h3>
+                        <p>Fort Developers Page</p>
+                        <a href="https://facebook.com/fortdevelopers492" target="_blank" class="btn btn-sm">Visit Facebook</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>By using Fort Website, you accept and agree to our 
+                <a href="fort-dev-terms-and-conditions.html">Terms & Conditions</a> and 
+                <a href="fort-dev-privacy-policy.html">Privacy Policy</a>.
+            </p>
+            <p class="margin-top-xs">&copy; Fort Developers. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
