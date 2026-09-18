@@ -3,8 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="fort-logo-no-background.png" type="image/png">
     <title>Blogs & Documentary - Fort Developers</title>
+    
+    <!-- Inline Early Theme Initialization -->
+    <!-- Fixed Light Default Theme Initialization Script -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem("fort_theme");
+            // Only set dark mode if explicitly saved as "dark" by user interaction
+            if (savedTheme === "dark") {
+                document.documentElement.setAttribute("data-theme", "dark");
+            } else {
+                document.documentElement.removeAttribute("data-theme");
+            }
+        })();
+    </script>
+
     <link rel="stylesheet" href="fort-blogs-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="script.js" defer></script>
@@ -13,7 +27,7 @@
 
     <!-- Preserved Preloader Loading Animation Overlay -->
     <div id="preloader-container">
-        <img src="fort-logo.png" alt="Fort Logo" class="preloader-logo">
+        <img src="fort-logo-border-cropped.png" alt="Fort Logo" class="preloader-logo">
         <div class="progress-meter-container">
             <div id="preloader-progress-bar" class="progress-meter-bar"></div>
         </div>
@@ -34,6 +48,12 @@
                 <li><a href="#blog-feed-section">Articles</a></li>
                 <li><a href="contact-us.html">Contact</a></li>
                 <li><a href="about-us.html">About Us</a></li>
+                <li class="theme-toggle-li">
+                    <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle Theme">
+                        <i class="fa-solid fa-moon" id="theme-toggle-icon"></i>
+                        <span id="theme-toggle-text">Dark</span>
+                    </button>
+                </li>
             </ul>
             <div class="hamburger">
                 <span></span>

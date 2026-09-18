@@ -1,4 +1,5 @@
 /* Color Palette and System Variables */
+/* Color Palette and System Variables */
 :root {
   --primary-blue: #0044cc;
   --dark-blue: #002244;
@@ -6,11 +7,167 @@
   --text-dark: #1a202c;
   --text-light: #ffffff;
   --bg-light: #f4f7f6;
+  --bg-main: #ffffff;
+  --card-bg: #ffffff;
   --border-color: #cbd5e0;
   --mint-bg: #e0f2f1;
   --teal-text: #004d40;
+  --preloader-bg: #ffffff;
+  --preloader-text: #718096;
   --transition: all 0.3s ease-in-out;
 }
+
+/* Dark Theme Overrides */
+[data-theme="dark"] {
+  --primary-blue: #38bdf8;
+  --dark-blue: #0f172a;
+  --accent-light: #334155;
+  --text-dark: #f8fafc;
+  --text-light: #ffffff;
+  --bg-light: #1e293b;
+  --bg-main: #0f172a;
+  --card-bg: #1e293b;
+  --border-color: #334155;
+  --mint-bg: #134e4a;
+  --teal-text: #2dd4bf;
+  --preloader-bg: #0f172a;
+  --preloader-text: #94a3b8;
+}
+
+/* Page Core */
+body {
+  color: var(--text-dark);
+  line-height: 1.6;
+  background-color: var(--bg-main);
+}
+
+/* Base Card Defaults */
+.card {
+  background-color: var(--card-bg);
+  color: var(--text-dark);
+  border-left: 4px solid var(--primary-blue);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Blog Feed Layout Grid */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+.blog-card {
+  padding: 0;
+  border-left: none;
+  border-top: 4px solid var(--primary-blue);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card-bg);
+  min-height: 100%; /* Ensures cards stretch properly on mobile */
+}
+
+.blog-card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.blog-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-dark) !important; /* Uses dynamic variable for light/dark mode */
+  line-height: 1.35;
+  margin-bottom: 10px;
+}
+
+.blog-card-summary {
+  font-size: 0.92rem;
+  color: var(--text-dark);
+  opacity: 0.85;
+  margin-bottom: 18px;
+  flex: 1;
+}
+
+/* Responsive Fix for Mobile Viewports */
+@media (max-width: 768px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* Preloader Background Sync */
+#preloader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--preloader-bg);
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease, background-color 0.3s ease;
+}
+
+.preloader-text {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--preloader-text);
+  font-weight: 600;
+}
+
+/* Theme Toggle Button */
+/* --- Theme Toggle Button Styling --- */
+.theme-toggle-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-light);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 14px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+.theme-toggle-btn:hover {
+  color: #63b3ed;
+  border-color: #63b3ed;
+}
+
+/* Centralize Toggle Link in Mobile Menu */
+@media (max-width: 768px) {
+  .nav-links li.theme-toggle-li {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 12px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* Card Updates */
+.card, .drawer-links li a {
+  background: var(--card-bg) !important;
+  color: var(--text-dark) !important;
+  border-color: var(--border-color) !important;
+}
+
+.blog-card-summary {
+  color: var(--text-dark);
+  opacity: 0.8;
+}
+
 
 * {
   margin: 0;
@@ -23,28 +180,7 @@ html {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-body {
-  color: var(--text-dark);
-  line-height: 1.6;
-  background-color: #ffffff;
-}
-
 /* --- Preserved Preloader Animation Styles --- */
-#preloader-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #ffffff;
-  z-index: 99999;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
 #preloader-container.fade-out {
   opacity: 0;
   visibility: hidden;
@@ -84,13 +220,6 @@ body {
 
 .progress-meter-bar.fully-complete {
   background-color: var(--dark-blue) !important;
-}
-
-.preloader-text {
-  margin-top: 10px;
-  font-size: 0.85rem;
-  color: #718096;
-  font-weight: 600;
 }
 
 /* --- Header & Navigation --- */
@@ -162,6 +291,7 @@ header {
 }
 
 /* --- Section Structural Framework --- */
+/* --- Section Structural Framework --- */
 .scroll-section {
   padding: 80px 20px;
   opacity: 0;
@@ -170,8 +300,17 @@ header {
 }
 
 .scroll-section.visible {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Fail-safe Mobile Override: Ensures sections render even if observer delays */
+@media (max-width: 768px) {
+  .scroll-section {
+    opacity: 1 !important;
+    transform: none !important;
+    padding: 50px 15px;
+  }
 }
 
 .bg-light {
@@ -298,21 +437,7 @@ h2::after {
   text-align: left;
 }
 
-.blog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 24px;
-}
-
-.blog-card {
-  padding: 0;
-  border-left: none;
-  border-top: 4px solid var(--primary-blue);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
+/* Fix Mobile Grid Rendering & Flex Container Stack */
 .blog-card-media {
     width: 100%;
     height: 200px;
@@ -357,7 +482,6 @@ h2::after {
 
 .blog-card-summary {
   font-size: 0.92rem;
-  color: #718096;
   margin-bottom: 18px;
   flex: 1;
 }
@@ -454,10 +578,6 @@ footer a:hover {
 
   .hero-content h1 {
     font-size: 2rem;
-  }
-
-  .blog-grid {
-    grid-template-columns: 1fr;
   }
 }
 

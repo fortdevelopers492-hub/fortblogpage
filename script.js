@@ -51,11 +51,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- 3. Intersection Observer (Scroll Reveal Animations) ---
+  // --- 3. Intersection Observer (Mobile-Optimized) ---
   const sections = document.querySelectorAll(".scroll-section");
+
   const observerOptions = {
     root: null,
-    threshold: 0.12,
+    rootMargin: "50px 0px", // Trigger slightly before scrolling into view
+    threshold: 0.01 // Reduced from 0.12 so tall mobile sections trigger instantly
   };
 
   const sectionObserver = new IntersectionObserver((entries, observer) => {
@@ -97,40 +99,35 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("fort_last_rendered_flyer", currentFlyer);
   }
 
-  // -- Article Search Bar -- //
-  const searchInput = document.getElementById("article-search");
-  const blogCards = document.querySelectorAll(".blog-card");
-  const noResultsMessage = document.getElementById("no-results-message");
+// --- Search Filter Logic ---
+const searchInput = document.getElementById("article-search");
+const blogCards = document.querySelectorAll(".blog-card");
+const noResultsMessage = document.getElementById("no-results-message");
 
-  if (searchInput && blogCards.length > 0) {
-    searchInput.addEventListener("input", (e) => {
-      const searchTerm = e.target.value.toLowerCase().trim();
-      let visibleCardsCount = 0;
+if (searchInput && blogCards.length > 0) {
+  searchInput.addEventListener("input", (e) => {
+    const searchTerm = e.target.value.toLowerCase().trim();
+    let visibleCardsCount = 0;
 
-      blogCards.forEach(card => {
-        const title = card.querySelector(".blog-card-title").textContent.toLowerCase();
-        const summary = card.querySelector(".blog-card-summary").textContent.toLowerCase();
-        const badge = card.querySelector(".blog-topic-badge").textContent.toLowerCase();
+    blogCards.forEach((card) => {
+      const title = card.querySelector(".blog-card-title").textContent.toLowerCase();
+      const summary = card.querySelector(".blog-card-summary").textContent.toLowerCase();
+      const badge = card.querySelector(".blog-topic-badge").textContent.toLowerCase();
 
-        // Show item if search string exists in details
-        if (title.includes(searchTerm) || badge.includes(searchTerm) || summary.includes(searchTerm)) {
-          card.style.display = "flex";
-          visibleCardsCount++; 
-        } else {
-          card.style.display = "none";
-        }
-      });
-
-      // Toggle the Fallback Message
-      if (visibleCardsCount === 0) {
-        noResultsMessage.style.display ="block"
+      if (title.includes(searchTerm) || badge.includes(searchTerm) || summary.includes(searchTerm)) {
+        card.style.display = "flex"; // Restores flex container structure
+        visibleCardsCount++;
       } else {
-        noResultsMessage.style.display ="none"
+        card.style.display = "none";
       }
+    });
 
-    })
-  }
-  
+    if (noResultsMessage) {
+      noResultsMessage.style.display = visibleCardsCount === 0 ? "block" : "none";
+    }
+  });
+}  
+
 });
 
 document.querySelectorAll('.wa-direct-link').forEach(link => {
@@ -151,3 +148,44 @@ document.querySelectorAll('.wa-direct-link').forEach(link => {
     // Desktop devices follow default href target="_blank" to wa.me
   });
 });
+
+// --- Theme Switcher Logic with Dynamic Text & Icon ---
+const themeToggleBtn = document.getElementById("theme-toggle-btn");
+const themeToggleIcon = document.getElementById("theme-toggle-icon");
+const themeToggleText = document.getElementById("theme-toggle-text");
+
+function updateToggleUI(isDark) {
+  if (isDark) {
+    if (themeToggleIcon) {
+      themeToggleIcon.classList.remove("fa-moon");
+      themeToggleIcon.classList.add("fa-sun");
+    }
+    if (themeToggleText) themeToggleText.textContent = "Light";
+  } else {
+    if (themeToggleIcon) {
+      themeToggleIcon.classList.remove("fa-sun");
+      themeToggleIcon.classList.add("fa-moon");
+    }
+    if (themeToggleText) themeToggleText.textContent = "Dark";
+  }
+}
+
+// Initial state setup on DOM load
+const isCurrentlyDark = document.documentElement.getAttribute("data-theme") === "dark";
+updateToggleUI(isCurrentlyDark);
+
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener("click", () => {
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+    
+    if (isDark) {
+      document.documentElement.removeAttribute("data-theme");
+      localStorage.setItem("fort_theme", "light");
+      updateToggleUI(false);
+    } else {
+      document.documentElement.setAttribute("data-theme", "dark");
+      localStorage.setItem("fort_theme", "dark");
+      updateToggleUI(true);
+    }
+  });
+}
