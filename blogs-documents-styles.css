@@ -357,13 +357,19 @@ tr:last-child td {
 }
 
 .btn-read-more { 
-    color: var(--accent); 
+    color: var(--accent) !important; /* Uses #0288d1 in light mode and #38bdf8 in dark mode */
     font-weight: 600; 
-    text-decoration: none; 
+    text-decoration: none !important; /* Removes underline by default */
     font-size: 0.9rem; 
     display: inline-flex; 
     align-items: center; 
     gap: 6px; 
+    transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.btn-read-more:hover {
+    text-decoration: underline !important; /* Only applies underline on hover */
+    color: var(--accent-glow); /* Brightens text slightly on hover */
 }
 
 /* Responsive Layout Adjustments */
