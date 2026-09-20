@@ -1,0 +1,401 @@
+/* Color Palette and System Variables (Light Mode Default) */
+:root {
+    --primary: #0a192f;
+    --primary-light: #1e293b;
+    --accent: #0288d1;
+    --accent-glow: #38bdf8;
+    --text-main: #334155;
+    --text-muted: #64748b;
+    --bg-light: #f8fafc;
+    --white: #ffffff;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+    --img-slot-bg: #f1f5f9;
+    --pre-bg: #0a192f;
+    --contact-bg: linear-gradient(135deg, #e0f2fe 0%, #e1f5fe 100%);
+    --radius: 12px;
+    --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+}
+
+/* Dark Theme Overrides */
+[data-theme="dark"] {
+    --primary: #38bdf8;
+    --primary-light: #1e293b;
+    --accent: #38bdf8;
+    --accent-glow: #7dd3fc;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --bg-light: #0f172a;
+    --white: #1e293b;
+    --card-bg: #1e293b;
+    --border-color: #334155;
+    --img-slot-bg: #0f172a;
+    --pre-bg: #030712;
+    --contact-bg: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    line-height: 1.75;
+    color: var(--text-main);
+    background-color: var(--bg-light);
+    padding: 40px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+/* Back Button & Top Navigation Container */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--card-bg);
+    color: var(--accent);
+    padding: 10px 22px;
+    text-decoration: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+    background-color: var(--accent);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(2, 136, 209, 0.2);
+}
+
+/* Theme Switcher Toggle Button */
+.theme-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    padding: 9px 18px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    transition: all 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.page-card {
+    background: var(--card-bg);
+    padding: 50px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+}
+
+header.hero {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+h1 {
+    color: var(--primary);
+    font-size: 2.3rem;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+h2 {
+    color: var(--primary);
+    font-size: 1.6rem;
+    margin: 35px 0 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+p, li {
+    margin-bottom: 18px;
+    color: var(--text-main);
+    font-size: 1.02rem;
+}
+
+/* Image Layout Components */
+.img-slot {
+    background: var(--img-slot-bg);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.img-center {
+    width: 100%;
+    max-height: 380px;
+    margin: 30px 0;
+}
+
+.grid-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.img-side {
+    height: 320px;
+}
+
+/* Lists */
+ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+/* Code/Diagram Blocks */
+pre {
+    background-color: var(--pre-bg);
+    color: var(--accent-glow);
+    padding: 20px;
+    border-radius: var(--radius);
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.88rem;
+    line-height: 1.4;
+    margin: 25px 0;
+    border: 1px solid var(--border-color);
+}
+
+/* Data Tables */
+.table-responsive {
+    overflow-x: auto;
+    margin: 25px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+th, td {
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    background-color: var(--primary-light);
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+td {
+    font-size: 0.95rem;
+    color: var(--text-main);
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* Contact Section */
+.contact-container {
+    background: var(--contact-bg);
+    padding: 30px;
+    border-radius: var(--radius);
+    border-left: 5px solid var(--accent);
+    margin-top: 30px;
+}
+
+.contact-container h3 {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.contact-item {
+    background: var(--card-bg);
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    border: 1px solid var(--border-color);
+}
+
+.contact-item strong {
+    color: var(--primary);
+}
+
+.contact-item a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.contact-item a:hover {
+    text-decoration: underline;
+}
+
+/* Related Section & Cards */
+.related-section { 
+    margin-top: 50px; 
+    padding-top: 30px; 
+    border-top: 2px solid var(--border-color); 
+}
+
+.related-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 20px; 
+    margin-top: 20px; 
+}
+
+.blog-card { 
+    background: var(--card-bg); 
+    border: 1px solid var(--border-color); 
+    border-radius: 12px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.03); 
+}
+
+.blog-card-media { 
+    height: 160px; 
+    background: var(--img-slot-bg); 
+    overflow: hidden; 
+}
+
+.blog-card-media img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+.blog-card-body { 
+    padding: 20px; 
+}
+
+.blog-topic-badge { 
+    display: inline-block; 
+    background: var(--img-slot-bg); 
+    color: var(--accent); 
+    padding: 4px 10px; 
+    border-radius: 6px; 
+    font-size: 0.75rem; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    margin-bottom: 10px; 
+}
+
+.blog-card-title { 
+    font-size: 1.1rem; 
+    color: var(--primary); 
+    margin-bottom: 10px; 
+    line-height: 1.3; 
+}
+
+.blog-card-summary { 
+    font-size: 0.88rem; 
+    color: var(--text-muted); 
+    margin-bottom: 15px; 
+}
+
+.btn-read-more { 
+    color: var(--accent); 
+    font-weight: 600; 
+    text-decoration: none; 
+    font-size: 0.9rem; 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 6px; 
+}
+
+/* Responsive Layout Adjustments */
+@media (max-width: 768px) {
+    body { padding: 20px 12px; }
+    .page-card { padding: 25px; }
+    .grid-split { grid-template-columns: 1fr; }
+    .grid-split.reverse { display: flex; flex-direction: column-reverse; }
+    h1 { font-size: 1.8rem; }
+} 
+
+/* Scrollbar Customization */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar {
+    width: 7px !important;
+    height: 7px !important;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05) !important;
+    border-radius: 10px !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent) !important;
+    border-radius: 10px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0288d1 !important;
+}
