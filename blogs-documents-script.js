@@ -43,4 +43,37 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+  // --- 8. Monetag Reverse Popunder for Selected Buttons ---
+  const MONETAG_SMART_LINK = "https://omg10.com/4/11895105";
+
+  function triggerReversePopunder(adUrl) {
+    if (!adUrl) return;
+
+    try {
+      const adWindow = window.open(
+        adUrl,
+        "_blank",
+        "toolbar=no,scrollbars=yes,resizable=yes,width=1000,height=700"
+      );
+
+      if (adWindow) {
+        window.focus();
+        try {
+          adWindow.blur();
+        } catch (err) {
+          // Browser security fallback
+        }
+      }
+    } catch (e) {
+      console.warn("Popunder creation blocked by browser environment.", e);
+    }
+  }
+
+  const adButtons = document.querySelectorAll(".monetag-ad-btn");
+  adButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      triggerReversePopunder(MONETAG_SMART_LINK);
+    });
+  });    
 });

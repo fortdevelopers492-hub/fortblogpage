@@ -405,3 +405,71 @@ tr:last-child td {
 ::-webkit-scrollbar-thumb:hover {
     background: #0288d1 !important;
 }
+
+/* --- Compact Giveaway Banner Advert Styles --- */
+.blog-giveaway-container {
+  width: 100%;
+  margin: 30px 0;
+}
+
+.sponsored-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
+
+.sponsored-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+  background-color: rgba(0, 0, 0, 0.04);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+[data-theme="dark"] .sponsored-badge {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.blog-giveaway-wrapper {
+  width: 100%;
+  height: 140px; /* Short fixed height for desktop */
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  background-color: var(--img-slot-bg);
+}
+
+.blog-giveaway-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.blog-giveaway-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+
+.blog-giveaway-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Fits image inside the fixed height without distorting ratio */
+  display: block;
+}
+
+/* Mobile Responsiveness - Shorter Height */
+@media (max-width: 768px) {
+  .blog-giveaway-wrapper {
+    height: 100px; /* Reduced height for smaller mobile screens */
+  }
+}
