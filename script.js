@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, intervalTime);
   }
 
-  // --- 2. Mobile Menu Navigation Navigation Controller ---
+  // --- 2. Mobile Menu Navigation Controller ---
   const hamburger = document.querySelector(".hamburger");
   const navLinks = document.querySelector(".nav-links");
 
@@ -51,13 +51,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- 3. Intersection Observer (Mobile-Optimized) ---
+  // --- 3. Intersection Observer (Mobile-Optimized Scroll Reveal) ---
   const sections = document.querySelectorAll(".scroll-section");
 
   const observerOptions = {
     root: null,
-    rootMargin: "50px 0px", // Trigger slightly before scrolling into view
-    threshold: 0.01 // Reduced from 0.12 so tall mobile sections trigger instantly
+    rootMargin: "50px 0px",
+    threshold: 0.01
   };
 
   const sectionObserver = new IntersectionObserver((entries, observer) => {
@@ -73,119 +73,142 @@ document.addEventListener("DOMContentLoaded", () => {
     sectionObserver.observe(section);
   });
 
-  // --- 4. Advert Display Logic (Visit Counter & Video Rotation) ---
-  const sourceDesktop = document.getElementById("ad-source-desktop") 
-  const sourceMobile = document.getElementById("ad-source-mobile")
-  const imageFallback = document.getElementById("ad-image-fallback")
+  // --- 4. Advert Display Logic (Flyer Rotation) ---
+  const sourceDesktop = document.getElementById("ad-source-desktop");
+  const sourceMobile = document.getElementById("ad-source-mobile");
+  const imageFallback = document.getElementById("ad-image-fallback");
 
-  if (sourceDesktop && sourceMobile && sourceDesktop) {
-    // Retrieve last display state (defaults to 'flyer1' if missing)
-    const lastFlyer = localStorage.getItem("fort_last_rendered_flyer") || "flyer2"
-
-    // Determine the next flyer vairant to show
-    const currentFlyer = lastFlyer === "flyer1" ? "flyer2" : "flyer1"
+  if (sourceDesktop && sourceMobile && imageFallback) {
+    const lastFlyer = localStorage.getItem("fort_last_rendered_flyer") || "flyer2";
+    const currentFlyer = lastFlyer === "flyer1" ? "flyer2" : "flyer1";
 
     if (currentFlyer === "flyer1") {
-      sourceDesktop.srcset = "flyer-fort-landscape.png"
-      sourceMobile.srcset = "flyer-fort-potrait.png"
-      imageFallback.src = "flyer-fort-landscape.png"
+      sourceDesktop.srcset = "flyer-fort-landscape.png";
+      sourceMobile.srcset = "flyer-fort-potrait.png";
+      imageFallback.src = "flyer-fort-landscape.png";
     } else {
-      sourceDesktop.srcset = "flyer-fort-2_ewnab_landscape.png"
-      sourceMobile.srcset = "flyer-fort-2_ewnab_potrait.png"
-      imageFallback.src = "flyer-fort-2_ewnab_landscape.png"      
+      sourceDesktop.srcset = "flyer-fort-2_ewnab_landscape.png";
+      sourceMobile.srcset = "flyer-fort-2_ewnab_potrait.png";
+      imageFallback.src = "flyer-fort-2_ewnab_landscape.png";
     }
 
-    // Overwrite history with the current active layout
     localStorage.setItem("fort_last_rendered_flyer", currentFlyer);
   }
 
-// --- Search Filter Logic ---
-const searchInput = document.getElementById("article-search");
-const blogCards = document.querySelectorAll(".blog-card");
-const noResultsMessage = document.getElementById("no-results-message");
+  // --- 5. Blog Search Filter Logic ---
+  const searchInput = document.getElementById("article-search");
+  const blogCards = document.querySelectorAll(".blog-card");
+  const noResultsMessage = document.getElementById("no-results-message");
 
-if (searchInput && blogCards.length > 0) {
-  searchInput.addEventListener("input", (e) => {
-    const searchTerm = e.target.value.toLowerCase().trim();
-    let visibleCardsCount = 0;
+  if (searchInput && blogCards.length > 0) {
+    searchInput.addEventListener("input", (e) => {
+      const searchTerm = e.target.value.toLowerCase().trim();
+      let visibleCardsCount = 0;
 
-    blogCards.forEach((card) => {
-      const title = card.querySelector(".blog-card-title").textContent.toLowerCase();
-      const summary = card.querySelector(".blog-card-summary").textContent.toLowerCase();
-      const badge = card.querySelector(".blog-topic-badge").textContent.toLowerCase();
+      blogCards.forEach((card) => {
+        const title = card.querySelector(".blog-card-title")?.textContent.toLowerCase() || "";
+        const summary = card.querySelector(".blog-card-summary")?.textContent.toLowerCase() || "";
+        const badge = card.querySelector(".blog-topic-badge")?.textContent.toLowerCase() || "";
 
-      if (title.includes(searchTerm) || badge.includes(searchTerm) || summary.includes(searchTerm)) {
-        card.style.display = "flex"; // Restores flex container structure
-        visibleCardsCount++;
-      } else {
-        card.style.display = "none";
+        if (title.includes(searchTerm) || badge.includes(searchTerm) || summary.includes(searchTerm)) {
+          card.style.display = "flex";
+          visibleCardsCount++;
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      if (noResultsMessage) {
+        noResultsMessage.style.display = visibleCardsCount === 0 ? "block" : "none";
       }
     });
-
-    if (noResultsMessage) {
-      noResultsMessage.style.display = visibleCardsCount === 0 ? "block" : "none";
-    }
-  });
-}  
-
-});
-
-document.querySelectorAll('.wa-direct-link').forEach(link => {
-  link.addEventListener('click', function(e) {
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-    if (isMobile) {
-      e.preventDefault();
-
-      // Extract phone and message directly from href
-      const url = new URL(this.href);
-      const phone = url.pathname.replace('/', '');
-      const text = url.searchParams.get('text') || '';
-
-      // Direct URI scheme (Bypasses web landing page on iOS & Android)
-      window.location.href = `whatsapp://send?phone=${phone}&text=${text}`;
-    }
-    // Desktop devices follow default href target="_blank" to wa.me
-  });
-});
-
-// --- Theme Switcher Logic with Dynamic Text & Icon ---
-const themeToggleBtn = document.getElementById("theme-toggle-btn");
-const themeToggleIcon = document.getElementById("theme-toggle-icon");
-const themeToggleText = document.getElementById("theme-toggle-text");
-
-function updateToggleUI(isDark) {
-  if (isDark) {
-    if (themeToggleIcon) {
-      themeToggleIcon.classList.remove("fa-moon");
-      themeToggleIcon.classList.add("fa-sun");
-    }
-    if (themeToggleText) themeToggleText.textContent = "Light";
-  } else {
-    if (themeToggleIcon) {
-      themeToggleIcon.classList.remove("fa-sun");
-      themeToggleIcon.classList.add("fa-moon");
-    }
-    if (themeToggleText) themeToggleText.textContent = "Dark";
   }
-}
 
-// Initial state setup on DOM load
-const isCurrentlyDark = document.documentElement.getAttribute("data-theme") === "dark";
-updateToggleUI(isCurrentlyDark);
+  // --- 6. WhatsApp Direct Link Handling ---
+  document.querySelectorAll(".wa-direct-link").forEach((link) => {
+    link.addEventListener("click", function (e) {
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-if (themeToggleBtn) {
-  themeToggleBtn.addEventListener("click", () => {
-    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-    
-    if (isDark) {
-      document.documentElement.removeAttribute("data-theme");
-      localStorage.setItem("fort_theme", "light");
-      updateToggleUI(false);
-    } else {
-      document.documentElement.setAttribute("data-theme", "dark");
-      localStorage.setItem("fort_theme", "dark");
-      updateToggleUI(true);
-    }
+      if (isMobile) {
+        e.preventDefault();
+        const url = new URL(this.href);
+        const phone = url.pathname.replace("/", "");
+        const text = url.searchParams.get("text") || "";
+        window.location.href = `whatsapp://send?phone=${phone}&text=${text}`;
+      }
+    });
   });
-}
+
+  // --- 7. Theme Switcher Logic ---
+  const themeToggleBtn = document.getElementById("theme-toggle-btn");
+  const themeToggleIcon = document.getElementById("theme-toggle-icon");
+  const themeToggleText = document.getElementById("theme-toggle-text");
+
+  function updateToggleUI(isDark) {
+    if (isDark) {
+      if (themeToggleIcon) {
+        themeToggleIcon.classList.remove("fa-moon");
+        themeToggleIcon.classList.add("fa-sun");
+      }
+      if (themeToggleText) themeToggleText.textContent = "Light";
+    } else {
+      if (themeToggleIcon) {
+        themeToggleIcon.classList.remove("fa-sun");
+        themeToggleIcon.classList.add("fa-moon");
+      }
+      if (themeToggleText) themeToggleText.textContent = "Dark";
+    }
+  }
+
+  const isCurrentlyDark = document.documentElement.getAttribute("data-theme") === "dark";
+  updateToggleUI(isCurrentlyDark);
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener("click", () => {
+      const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+
+      if (isDark) {
+        document.documentElement.removeAttribute("data-theme");
+        localStorage.setItem("fort_theme", "light");
+        updateToggleUI(false);
+      } else {
+        document.documentElement.setAttribute("data-theme", "dark");
+        localStorage.setItem("fort_theme", "dark");
+        updateToggleUI(true);
+      }
+    });
+  }
+
+  // --- 8. Monetag Reverse Popunder for Selected Buttons ---
+  const MONETAG_SMART_LINK = "https://omg10.com/4/11899499";
+
+  function triggerReversePopunder(adUrl) {
+    if (!adUrl) return;
+
+    try {
+      const adWindow = window.open(
+        adUrl,
+        "_blank",
+        "toolbar=no,scrollbars=yes,resizable=yes,width=1000,height=700"
+      );
+
+      if (adWindow) {
+        window.focus();
+        try {
+          adWindow.blur();
+        } catch (err) {
+          // Browser security fallback
+        }
+      }
+    } catch (e) {
+      console.warn("Popunder creation blocked by browser environment.", e);
+    }
+  }
+
+  const adButtons = document.querySelectorAll(".monetag-ad-btn");
+  adButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      triggerReversePopunder(MONETAG_SMART_LINK);
+    });
+  });
+});
