@@ -4,6 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blogs & Documentary - Fort Developers</title>
+
+    <!-- Monetag Script -->
+    <script src="https://quge5.com/88/tag.min.js" data-zone="286973" async data-cfasync="false"></script>
+
+    <!-- Interceptor Script: Block ads for elements marked with .not-ad-btn -->
+    <script>
+    (function() {
+        window.addEventListener('click', function(event) {
+        // Check if the click happened inside an element marked as 'not-ad-btn'
+        const isBlockedElement = event.target.closest('.not-ad-btn');
+
+        if (isBlockedElement) {
+            // Kills Monetag's global click listener before it fires
+            event.stopImmediatePropagation();
+        }
+        }, true); // 'true' runs this during the capture phase before Monetag catches it
+    })();
+    </script>    
     
     <!-- Inline Early Theme Initialization -->
     <!-- Fixed Light Default Theme Initialization Script -->
@@ -22,7 +40,6 @@
     <link rel="stylesheet" href="fort-blogs-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="script.js" defer></script>
-    <script src="https://quge5.com/88/tag.min.js" data-zone="287314" async data-cfasync="false"></script>
 </head>
 <body>
 
@@ -66,7 +83,7 @@
 
     <main>
         <!-- Hero Intro Section -->
-        <section id="intro-section" class="scroll-section hero">
+        <section id="intro-section" class="scroll-section hero not-ad-btn">
             <div class="hero-content">
                 <img src="fort-logo-border-cropped.png" alt="Fort Logo" class="hero-logo">
                 <h1>Fort Developers Blog</h1>
@@ -76,7 +93,7 @@
         </section>
 
         <!-- Table of Contents Section -->
-        <section id="table-of-contents" class="scroll-section bg-light">
+        <section id="table-of-contents" class="scroll-section bg-light not-ad-btn">
             <div class="container">
                 <h2>Table of Contents</h2>
                 <ul class="drawer-links margin-top-md">
@@ -90,7 +107,7 @@
         </section>
 
         <!-- Blog Feed Section -->
-        <section id="blog-feed-section" class="scroll-section">
+        <section id="blog-feed-section" class="scroll-section not-ad-btn">
             <div class="container">
                 <h2>Latest Articles & Insights</h2>
                 <p>Read stories, guides, and engineering logs written directly by Fort Developers.</p>
@@ -109,7 +126,7 @@
                         <p>No articles match your search criteria. Try a different keyword!</p>
                     </div>
                     
-                    <article class="card blog-card">
+                    <article class="card blog-card not-ad-btn">
                         <div class="blog-card-media">
                             <img src="fort-graphics-logo.png" alt="Fort Graphics Marketplace Workflows">
                         </div>
@@ -123,7 +140,7 @@
                         </div>
                     </article>
 
-                    <article class="card blog-card">
+                    <article class="card blog-card not-ad-btn">
                         <div class="blog-card-media">
                             <img src="assets/html-2d-canvas-image.png" alt="High-Performance 2D Canvas & WebGL Pipelines">
                         </div>
@@ -137,7 +154,7 @@
                         </div>
                     </article>
 
-                    <article class="card blog-card">
+                    <article class="card blog-card not-ad-btn">
                         <div class="blog-card-media">
                             <img src="assets/cloud-storage-image.png" alt="Real-Time State Synchronization">
                         </div>
@@ -151,7 +168,7 @@
                         </div>
                     </article>
 
-                    <article class="card blog-card">
+                    <article class="card blog-card not-ad-btn">
                         <div class="blog-card-media">
                             <img src="assets/paystack-fortdevelopers-image.png" alt="Paystack Split Payments & Escrow Architecture">
                         </div>
@@ -165,7 +182,7 @@
                         </div>
                     </article>
 
-                    <article class="card blog-card">
+                    <article class="card blog-card not-ad-btn">
                         <div class="blog-card-media">
                             <img src="assets/ecommerce-blog-image.png" alt="Web Development Glossary">
                         </div>
@@ -179,7 +196,7 @@
                         </div>
                     </article>
 
-                    <article class="card blog-card">
+                    <article class="card blog-card not-ad-btn">
                         <div class="blog-card-media">
                             <img src="assets/paystack-fortdevelopers-image.png" alt="Comprehensive Paystack Payment Architecture">
                         </div>
@@ -193,7 +210,7 @@
                         </div>
                     </article>
 
-                    <article class="card blog-card">
+                    <article class="card blog-card not-ad-btn">
                         <div class="blog-card-media">
                             <img src="assets/paystack-fortdevelopers-image.png" alt="Subscription & Recurring Billing Architecture">
                         </div>
@@ -207,7 +224,7 @@
                         </div>
                     </article>
 
-                    <article class="card blog-card">
+                    <article class="card blog-card not-ad-btn">
                         <div class="blog-card-media">
                             <img src="asset-lock-system.png" alt="Deep Dive on Escrow Verification Systems">
                         </div>
@@ -221,7 +238,7 @@
                         </div>
                     </article>
 
-                    <article class="card blog-card">
+                    <article class="card blog-card not-ad-btn">
                         <div class="blog-card-media">
                             <img src="fort-dev-laptop-image.png" alt="Blitting in Modern Web Engine">
                         </div>
@@ -235,7 +252,7 @@
                         </div>
                     </article>
 
-                    <article class="card blog-card">
+                    <article class="card blog-card not-ad-btn">
                         <div class="blog-card-media">
                             <img src="assets/ecommerce-blog-image.png" alt="Deep Dive on Single-Page Applications">
                         </div>
@@ -249,7 +266,7 @@
                         </div>
                     </article>
 
-                    <article class="card blog-card">
+                    <article class="card blog-card not-ad-btn">
                         <div class="blog-card-media">
                             <img src="assets/emailjs-fortdevelopers-image.png" alt="Comprehensive EmailJS Integration Architecture">
                         </div>
@@ -263,7 +280,7 @@
                         </div>
                     </article>
 
-                    <article class="card blog-card">
+                    <article class="card blog-card not-ad-btn">
                         <div class="blog-card-media">
                             <img src="assets/emailjs-fortdevelopers-image.png" alt="Auto-Reply EmailJS Integration">
                         </div>
@@ -277,7 +294,7 @@
                         </div>
                     </article>
 
-                    <article class="card blog-card">
+                    <article class="card blog-card not-ad-btn">
                         <div class="blog-card-media">
                             <img src="assets/emailjs-fortdevelopers-image.png" alt="OTP Verification EmailJS Architecture">
                         </div>
@@ -291,7 +308,7 @@
                         </div>
                     </article>
 
-                    <article class="card blog-card">
+                    <article class="card blog-card not-ad-btn">
                         <div class="blog-card-media">
                             <img src="assets/html-2d-canvas-image.png" alt="Optimizing Sprite Atlases for WebGL Canvas Pipelines">
                         </div>
@@ -305,7 +322,7 @@
                         </div>
                     </article>
 
-                    <article class="card blog-card">
+                    <article class="card blog-card not-ad-btn">
                         <div class="blog-card-media">
                             <img src="assets/html-2d-canvas-image.png" alt="Web Workers & OffscreenCanvas">
                         </div>
@@ -319,7 +336,7 @@
                         </div>
                     </article>
                     
-                    <article class="card blog-card">
+                    <article class="card blog-card not-ad-btn">
                         <div class="blog-card-media">
                             <img src="fort-dev-laptop-image.png" alt="Understanding Compositing and Layer Squashing">
                         </div>
@@ -333,7 +350,7 @@
                         </div>
                     </article> 
                     
-                    <article class="card blog-card">
+                    <article class="card blog-card not-ad-btn">
                         <div class="blog-card-media">
                             <img src="assets/paystack-fortdevelopers-image.png" alt="Architecting Multi-Currency Ledgers for Global Creative Marketplaces">
                         </div>
@@ -347,7 +364,7 @@
                         </div>
                     </article>    
                     
-                    <article class="card blog-card">
+                    <article class="card blog-card not-ad-btn">
                         <div class="blog-card-media">
                             <img src="assets/maths-js-physics-blog-image.png" alt="Securing Digital Deliverables">
                         </div>
