@@ -20,7 +20,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="blogs-documents-styles.css">
     <script src="blogs-documents-script.js" defer></script>
-    <script src="https://quge5.com/88/tag.min.js" data-zone="287314" async data-cfasync="false"></script>    
+    <!-- Monetag Script (Matching Working Index Zone) -->
+    <script src="https://quge5.com/88/tag.min.js" data-zone="286973" async data-cfasync="false"></script>
+
+    <!-- Interceptor Script -->
+    <script>
+    (function() {
+        window.addEventListener('click', function(event) {
+        const isBlockedElement = event.target.closest('.not-ad-btn');
+        if (isBlockedElement) {
+            event.stopImmediatePropagation();
+        }
+        }, true);
+    })();
+    </script>
 </head>
 <body>
 
